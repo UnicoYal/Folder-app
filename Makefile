@@ -50,3 +50,19 @@ lint-install:
 lint: $(GOLANGCI_LINT)
 	@echo ">> running golangci-lint"
 	$(GOLANGCI_LINT) run -c $(LINT_CFG) --timeout $(LINT_TIMEOUT) ./...
+
+
+MOCKERY_PKG ?= github.com/vektra/mockery/v3
+MOCKERY_VER ?= v3.0.0
+MOCKERY_CFG ?= .mockery.yaml
+
+.PHONY: generate_mocks 
+generate_mocks:
+	@echo ">> generating mocks via $(MOCKERY_CFG)"
+	@if command -v mockery >/dev/null 2>&1; then \
+		mockery --config $(MOCKERY_CFG); \
+	else \
+		echo "mockery not found in PATH, running via go run ($(MOCKERY_VER))"; \
+		go run $(MOCKERY_PKG)@$(MOCKERY_VER) --config $(MOCKERY_CFG); \
+	fi
+
