@@ -8,7 +8,7 @@ import (
 
 // Container for folders repository init
 type FoldersRepositoryContainer struct {
-	repo *repository.FoldersRepository
+	repo usecase.Repository
 }
 
 type DI interface {

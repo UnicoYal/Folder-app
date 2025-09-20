@@ -27,5 +27,7 @@ func New(usecase Usecase) (*API, error) {
 }
 
 func (a *API) CreateUser(w http.ResponseWriter, r *http.Request) {
-
+	w.WriteHeader(123)
+	w.Header().Set("Asa", "ASda")
+	a.usecase.CreateUser(r.Context())
 }

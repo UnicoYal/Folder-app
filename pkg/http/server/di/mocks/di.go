@@ -2,12 +2,11 @@
 // github.com/vektra/mockery
 // template: testify
 
-package httpmocks
+package dimocks
 
 import (
 	"net/http"
 
-	"github.com/folder-app/internal/app/api/http/v1"
 	mock "github.com/stretchr/testify/mock"
 )
 
@@ -36,52 +35,6 @@ type DI_Expecter struct {
 
 func (_m *DI) EXPECT() *DI_Expecter {
 	return &DI_Expecter{mock: &_m.Mock}
-}
-
-// ProvideFoldersUsecase provides a mock function for the type DI
-func (_mock *DI) ProvideFoldersUsecase() v1.Usecase {
-	ret := _mock.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for ProvideFoldersUsecase")
-	}
-
-	var r0 v1.Usecase
-	if returnFunc, ok := ret.Get(0).(func() v1.Usecase); ok {
-		r0 = returnFunc()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(v1.Usecase)
-		}
-	}
-	return r0
-}
-
-// DI_ProvideFoldersUsecase_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ProvideFoldersUsecase'
-type DI_ProvideFoldersUsecase_Call struct {
-	*mock.Call
-}
-
-// ProvideFoldersUsecase is a helper method to define mock.On call
-func (_e *DI_Expecter) ProvideFoldersUsecase() *DI_ProvideFoldersUsecase_Call {
-	return &DI_ProvideFoldersUsecase_Call{Call: _e.mock.On("ProvideFoldersUsecase")}
-}
-
-func (_c *DI_ProvideFoldersUsecase_Call) Run(run func()) *DI_ProvideFoldersUsecase_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run()
-	})
-	return _c
-}
-
-func (_c *DI_ProvideFoldersUsecase_Call) Return(usecase v1.Usecase) *DI_ProvideFoldersUsecase_Call {
-	_c.Call.Return(usecase)
-	return _c
-}
-
-func (_c *DI_ProvideFoldersUsecase_Call) RunAndReturn(run func() v1.Usecase) *DI_ProvideFoldersUsecase_Call {
-	_c.Call.Return(run)
-	return _c
 }
 
 // ProvideHTTPMux provides a mock function for the type DI

@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"fmt"
 )
 
 type Repository interface {
@@ -19,5 +20,6 @@ func New(repo Repository) *FoldersUsecase {
 }
 
 func (u *FoldersUsecase) CreateUser(ctx context.Context) {
+	fmt.Println("Create usecase")
 	u.repository.CreateUser(ctx)
 }

@@ -7,7 +7,7 @@ import (
 
 // Container for folders usecase init
 type FoldersUsecaseContainer struct {
-	usecase *usecase.FoldersUsecase
+	usecase v1.Usecase
 }
 
 type DI interface {
