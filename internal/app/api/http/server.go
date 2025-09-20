@@ -9,7 +9,7 @@ import (
 )
 
 type DI interface {
-	ProvideHTTPServer() *http.ServeMux
+	ProvideHTTPMux() *http.ServeMux
 	ProvideFoldersUsecase() v1.Usecase
 }
 
@@ -19,6 +19,6 @@ func Setup(di DI) error {
 		return fmt.Errorf("v1.New: %w", err)
 	}
 
-	router.SetupV1(api, di.ProvideHTTPServer())
+	router.SetupV1(api, di.ProvideHTTPMux())
 	return nil
 }

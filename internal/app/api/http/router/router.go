@@ -7,5 +7,5 @@ import (
 )
 
 func SetupV1(api *v1.API, httpServer *http.ServeMux) {
-	httpServer.HandleFunc("/api/v1/user/create", api.CreateUser)
+	httpServer.HandleFunc("POST /api/v1/user/create", api.CreateUser)
 }

@@ -27,5 +27,4 @@ func New(usecase Usecase) (*API, error) {
 }
 
 func (a *API) CreateUser(w http.ResponseWriter, r *http.Request) {
-
 }
