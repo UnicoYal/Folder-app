@@ -1,0 +1,36 @@
+name: lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  golangci-lint:
+    name: golangci-lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Install golangci-lint (via go install)
+        run: make lint-install
+      
+      - name: Run lint (via make)
+        run: make lint
