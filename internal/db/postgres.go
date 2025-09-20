@@ -47,12 +47,5 @@ func NewPostgresPool(ctx context.Context, cfg *config.PostgresConfig) (*pgxpool.
 		return nil, fmt.Errorf("ping db: %w", err)
 	}
 
-	// Если ваш мигратор работает поверх pgx (или принимает stdlib/sql), адаптируйте:
-	// пример для goose с драйвером "pgx":
-	// goose.SetDialect("postgres")
-	// db := stdlib.OpenDBFromPool(pool) // если нужен *sql.DB, см. pgx/v5/stdlib
-	// defer db.Close()
-	// if err := goose.Up(db, "migrations"); err != nil { ... }
-
 	return pool, nil
 }

@@ -85,12 +85,12 @@ func (_c *DI_ProvideFoldersUsecase_Call) RunAndReturn(run func() v1.Usecase) *DI
 	return _c
 }
 
-// ProvideHTTPServer provides a mock function for the type DI
-func (_mock *DI) ProvideHTTPServer() *http.ServeMux {
+// ProvideHTTPMux provides a mock function for the type DI
+func (_mock *DI) ProvideHTTPMux() *http.ServeMux {
 	ret := _mock.Called()
 
 	if len(ret) == 0 {
-		panic("no return value specified for ProvideHTTPServer")
+		panic("no return value specified for ProvideHTTPMux")
 	}
 
 	var r0 *http.ServeMux
@@ -99,6 +99,52 @@ func (_mock *DI) ProvideHTTPServer() *http.ServeMux {
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*http.ServeMux)
+		}
+	}
+	return r0
+}
+
+// DI_ProvideHTTPMux_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ProvideHTTPMux'
+type DI_ProvideHTTPMux_Call struct {
+	*mock.Call
+}
+
+// ProvideHTTPMux is a helper method to define mock.On call
+func (_e *DI_Expecter) ProvideHTTPMux() *DI_ProvideHTTPMux_Call {
+	return &DI_ProvideHTTPMux_Call{Call: _e.mock.On("ProvideHTTPMux")}
+}
+
+func (_c *DI_ProvideHTTPMux_Call) Run(run func()) *DI_ProvideHTTPMux_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *DI_ProvideHTTPMux_Call) Return(serveMux *http.ServeMux) *DI_ProvideHTTPMux_Call {
+	_c.Call.Return(serveMux)
+	return _c
+}
+
+func (_c *DI_ProvideHTTPMux_Call) RunAndReturn(run func() *http.ServeMux) *DI_ProvideHTTPMux_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ProvideHTTPServer provides a mock function for the type DI
+func (_mock *DI) ProvideHTTPServer() *http.Server {
+	ret := _mock.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for ProvideHTTPServer")
+	}
+
+	var r0 *http.Server
+	if returnFunc, ok := ret.Get(0).(func() *http.Server); ok {
+		r0 = returnFunc()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*http.Server)
 		}
 	}
 	return r0
@@ -121,12 +167,12 @@ func (_c *DI_ProvideHTTPServer_Call) Run(run func()) *DI_ProvideHTTPServer_Call 
 	return _c
 }
 
-func (_c *DI_ProvideHTTPServer_Call) Return(serveMux *http.ServeMux) *DI_ProvideHTTPServer_Call {
-	_c.Call.Return(serveMux)
+func (_c *DI_ProvideHTTPServer_Call) Return(server *http.Server) *DI_ProvideHTTPServer_Call {
+	_c.Call.Return(server)
 	return _c
 }
 
-func (_c *DI_ProvideHTTPServer_Call) RunAndReturn(run func() *http.ServeMux) *DI_ProvideHTTPServer_Call {
+func (_c *DI_ProvideHTTPServer_Call) RunAndReturn(run func() *http.Server) *DI_ProvideHTTPServer_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -25,7 +25,7 @@ func New(cfg *config.Config) (*Container, error) {
 		err error
 	)
 
-	c.BaseContainer, err = di.NewBaseContainer()
+	c.BaseContainer, err = di.NewBaseContainer(cfg)
 	if err != nil {
 		return nil, fmt.Errorf("di.NewBaseContainer: %w", err)
 	}

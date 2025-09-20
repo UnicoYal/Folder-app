@@ -2,11 +2,10 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/folder-app/config"
-	httpsrv "github.com/folder-app/internal/app/api/http"
+	"github.com/folder-app/internal/app"
 	"github.com/folder-app/internal/di"
 	"github.com/rs/zerolog/log"
 )
@@ -25,20 +24,12 @@ func main() {
 	lg := container.ProvideLogger()
 	lg.Info().Msg("container inited")
 
-	err = httpsrv.Setup(container)
+	srv, err := app.Setup(container)
 	if err != nil {
 		lg.Fatal().Err(err).Msg("cannot start service")
 	}
 
-	srv := &http.Server{
-		Addr:         fmt.Sprintf(":%d", cfg.Listener.Port),
-		Handler:      container.ProvideHTTPServer(),
-		ReadTimeout:  cfg.Listener.Timeout,
-		WriteTimeout: cfg.Listener.Timeout,
-		IdleTimeout:  cfg.Listener.IdleTimeout,
-	}
-
-	lg.Info().Msgf("Listening: %d", cfg.Listener.Port)
+	lg.Info().Msgf("Listening: %s", srv.Addr)
 
 	if err := srv.ListenAndServe(); err != nil {
 		if errors.Is(err, http.ErrServerClosed) {

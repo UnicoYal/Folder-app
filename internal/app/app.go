@@ -11,19 +11,20 @@ import (
 
 type DI interface {
 	ProvideLogger() *zerolog.Logger
-	ProvideHTTPServer() *http.ServeMux
+	ProvideHTTPMux() *http.ServeMux
 	ProvideFoldersUsecase() v1.Usecase
+	ProvideHTTPServer() *http.Server
 }
 
-func Setup(di DI) error {
+func Setup(di DI) (*http.Server, error) {
 	lg := di.ProvideLogger()
 
 	lg.Info().Msg("app.Setup starting")
 
 	err := httpserver.Setup(di)
 	if err != nil {
-		return fmt.Errorf("http.Setup: %w", err)
+		return nil, fmt.Errorf("http.Setup: %w", err)
 	}
 
-	return nil
+	return di.ProvideHTTPServer(), nil
 }
