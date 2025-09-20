@@ -1,0 +1,16 @@
+listener:
+  address: localhost
+  port: 8080
+  timeout: 4s
+  idleTimeout: 60s
+
+postgres:
+  host: localhost
+  port: 5432
+  user: unicoyal
+  password: 12345
+  name: folder_db
+  max_open_conns: 100
+  max_idle_conns: 30
+  conn_max_life_time: 30
+  conn_max_idle_time: 5
